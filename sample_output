@@ -1,0 +1,89 @@
+
+
+Dumping firewall rules
+----------------------------------------------------------------------------------------------------
+
+
+Group:  clients-box
+
+tcp  from 10.12.42.26/32  ports:  8080 8080
+-1  from 10.77.33.145/32  ports:  None None
+tcp  from 10.12.0.0/16  ports:  5027 5027
+tcp  from 10.12.0.0/16  ports:  22 22
+
+Group:  jumphost--box
+
+tcp  from 10.77.10.231/32  ports:  80 80
+tcp  from 10.77.10.231/32  ports:  8080 8080
+tcp  from 10.77.10.231/32  ports:  22 22
+tcp  from 10.77.10.231/32  ports:  5000 5000
+tcp  from 10.77.10.231/32  ports:  4001 4001
+tcp  from 10.77.10.231/32  ports:  2379 2379
+tcp  from 10.77.10.231/32  ports:  443 443
+tcp  from 10.77.10.231/32  ports:  9200 9200
+
+Group:  box-dev-chrish
+
+tcp  from 10.0.0.0/8  ports:  443 443
+
+Group:  nat-box-clients
+
+Please enter sudo password: 
+[chrsh@10.11.52.187] Executing task 'runcmds'
+Running iptables
+[chrsh@10.11.52.187] sudo: iptables --list
+
+[chrsh@10.11.52.187] out: sudo password:
+[chrsh@10.11.52.187] out: Chain INPUT (policy ACCEPT)
+[chrsh@10.11.52.187] out: target     prot opt source               destination         
+[chrsh@10.11.52.187] out: 
+[chrsh@10.11.52.187] out: Chain FORWARD (policy ACCEPT)
+[chrsh@10.11.52.187] out: target     prot opt source               destination         
+[chrsh@10.11.52.187] out: 
+[chrsh@10.11.52.187] out: Chain OUTPUT (policy ACCEPT)
+[chrsh@10.11.52.187] out: target     prot opt source               destination         
+[chrsh@10.11.52.187] out: 
+
+Running last
+[chrsh@10.11.52.187] sudo: last
+
+[chrsh@10.11.52.187] out: sudo password:
+[chrsh@10.11.52.187] out: reboot   system boot  3.13.0-45-generi Sun Feb  8 01:55 - 01:58  (00:02)    
+[chrsh@10.11.52.187] out: ubuntu   pts/0        c-66-12-9-58.hs Sun Feb  8 01:53 - down   (00:01)    
+[chrsh@10.11.52.187] out: ubuntu   pts/0        c-66-12-9-58.hs Sun Feb  8 01:53 - 01:53  (00:00)    
+[chrsh@10.11.52.187] out: reboot   system boot  3.13.0-45-generi Sun Feb  8 01:53 - 01:54  (00:01)    
+[chrsh@10.11.52.187] out: 
+[chrsh@10.11.52.187] out: wtmp begins Sun Feb  8 01:53:15 2015
+[chrsh@10.11.52.187] out: 
+
+Running w
+[chrsh@10.11.52.187] sudo: w
+
+[chrsh@10.11.52.187] out: sudo password:
+[chrsh@10.11.52.187] out:  03:21:26 up 9 days,  2:15,  1 user,  load average: 0.00, 0.01, 0.05
+[chrsh@10.11.52.187] out: USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+[chrsh@10.11.52.187] out: chrsh pts/0    ip-10.77-10-231. 03:21    0.00s  0.01s  0.02s sshd: chrsh 
+[chrsh@10.11.52.187] out: 
+
+Running auth.log
+[chrsh@10.11.52.187] sudo: tail /var/log/auth.log
+
+[chrsh@10.11.52.187] out: sudo password:
+[chrsh@10.11.52.187] out: May 12 03:21:25 chrish-i-a344343 sudo: pam_unix(sudo:session): session opened for user root by chrsh(uid=0)
+[chrsh@10.11.52.187] out: May 12 03:21:25 chrish-i-a344343 sudo: pam_unix(sudo:session): session closed for user root
+[chrsh@10.11.52.187] out: May 12 03:21:25 chrish-i-a344343 sudo: chrsh : TTY=pts/0 ; PWD=/home/chrsh ; USER=root ; COMMAND=/bin/bash -l -c last
+[chrsh@10.11.52.187] out: May 12 03:21:25 chrish-i-a344343 sudo: pam_unix(sudo:session): session opened for user root by chrsh(uid=0)
+[chrsh@10.11.52.187] out: May 12 03:21:25 chrish-i-a344343 sudo: pam_unix(sudo:session): session closed for user root
+[chrsh@10.11.52.187] out: May 12 03:21:26 chrish-i-a344343 sudo: chrsh : TTY=pts/0 ; PWD=/home/chrsh ; USER=root ; COMMAND=/bin/bash -l -c w
+[chrsh@10.11.52.187] out: May 12 03:21:26 chrish-i-a344343 sudo: pam_unix(sudo:session): session opened for user root by chrsh(uid=0)
+[chrsh@10.11.52.187] out: May 12 03:21:26 chrish-i-a344343 sudo: pam_unix(sudo:session): session closed for user root
+[chrsh@10.11.52.187] out: May 12 03:21:27 chrish-i-a344343 sudo: chrsh : TTY=pts/0 ; PWD=/home/chrsh ; USER=root ; COMMAND=/bin/bash -l -c tail /var/log/auth.log
+[chrsh@10.11.52.187] out: May 12 03:21:27 chrish-i-a344343 sudo: pam_unix(sudo:session): session opened for user root by chrsh(uid=0)
+[chrsh@10.11.52.187] out: 
+
+Looking for users that have a UID of 0
+[chrsh@10.11.52.187] sudo: cat /etc/passwd
+
+FOUND
+ root 0 0
+
