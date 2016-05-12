@@ -1,0 +1,9 @@
+Host bastion
+HostName < jump host ip > 
+DynamicForward 0.0.0.0:1080
+ServerAliveInterval 120
+ServerAliveCountMax 30
+
+Host < internal ip > 
+ProxyCommand /bin/nc -x 127.0.0.1:1080 %h %p
+

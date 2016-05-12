@@ -1,0 +1,8 @@
+---
+awssecurity:
+  awsinfo: 'yes'
+  serverconnect: 'yes'
+  awsaccesskey: < access key > 
+  awssecretkey: < scret key > 
+  sshuser: <ssh user>
+  jumphost: <internal ip>
